@@ -1,11 +1,10 @@
 #include <iostream>
 
 int main() {
-    unsigned int a, d1, d2, d3, d4, copy;
+    unsigned int a, d1, d2, d3, d4;
     std::cout << "Enter a positive four-digit integer: ";
     std::cin >> a;
 
-    copy = a;
     d1 = a % 10;
     a /= 10;
     d2 = a % 10;

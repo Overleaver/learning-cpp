@@ -1,31 +1,26 @@
 #include <iostream>
 
-const double R1 = 0.10;
-const double R2 = 0.20;
-const double R3 = 0.35;
-const double DE = 5.00;
-
 int main() {
-    int a;
+    const double surcharge = 5.00;
+
+    int kWh;
     std::cout << "Enter a non-negative real number: ";
-    std::cin >> a;
+    std::cin >> kWh;
 
-    double sum = 0.0;
-    if (a > 250.0) {
-        double exc = a - (a - 250.0);
-        a -= exc;
-        sum += exc * R3;
+    double tax = 0.0;
+
+    if (kWh <= 100.0) {
+        tax = 100 * 0.10;
     }
-    if (a > 100.0) {
-        double exc = a - (a - 100.0);
-        a -= exc;
-        sum += exc * R2;
+    else if (kWh <= 250.0) {
+        tax = 100 * 0.10 + (kWh - 100) * 0.20;
     }
-    sum += a * R1 + DE;
+    else {
+        tax = 100 * 0.10 + 150 * 0.20 + (kWh - 250) * 0.35;
+    }
+    tax += surcharge;
 
-    std::cout << sum << " lv.\n";
-
-    // wrong output
+    std::cout << tax << " lv.\n";
 
     return 0;
 }
