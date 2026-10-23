@@ -3,10 +3,9 @@
 int main() {
     int number;
     do {
-        std::cout << "Enter a non-negative integer: ";
+        std::cout << "Enter an integer: ";
         std::cin >> number;
-    }
-    while (number < 0);
+    } while (number < 0);
     
     int factorial = number;
     for (int i = 2; i < number; ++i) {

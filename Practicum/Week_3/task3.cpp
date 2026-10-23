@@ -2,20 +2,20 @@
 
 int main() {
     int n;
-    
     do {
-        std::cout << "Enter a natural number n: ";
+        std::cout << "Enter an integer: ";
         std::cin >> n;
-    }
-    while (n < 0);
+    } while (n < 0);
 
     int first = 0, second = 1;
     std::cout << first;
-    if (n == 0)
+    if (n == 0) {
         return 0;
+    }
     std::cout << ", " << second;
-    if (n == 1)
+    if (n == 1) {
         return 0;
+    }
 
     std::cout << ", ";
 
