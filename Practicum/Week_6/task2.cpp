@@ -1,50 +1,39 @@
 #include <iostream>
 
-int main() {
-    unsigned n;
-    std::cout << "n: ";
-    std::cin >> n;
-    int arr[n];
+constexpr size_t MAX_SIZE = 128;
 
-    for (unsigned i = 0; i < n; ++i) {
-        int num;
-        std::cin >> num;
-        arr[i] = num;
+void arrayInput(int arr[], const int size) {
+    for (size_t i = 0; i < size; ++i) {
+        std::cin >> arr[i];
     }
+}
+
+void outputUniquePairs(const int arr[], const int size, const int target) {
+    bool found = false;
+    for (size_t i = 0; i < size; ++i) {
+        for (size_t j = i + 1; j < size; ++j) {
+            if (arr[i] * arr[j] == target) {
+                std::cout << '(' << arr[i] << ", " << arr[j] << ")\n";
+                found = true;
+            }
+        }
+    }
+    if (!found) {
+        std::cout << "No unique value pairs found\n";
+    }
+}
+
+int main() {
+    size_t n;
+    std::cin >> n;
+    
+    int arr[MAX_SIZE];
+    arrayInput(arr, n);
 
     int target;
-    std::cout << "target: ";
     std::cin >> target;
 
-    bool found = false;
+    outputUniquePairs(arr, n, target);
 
-    // for (unsigned i = 0; i < n; ++i) {
-    //     std::cout << arr[i] << ' ';
-    // }
-    // std::cout << '\n';
-    // for (unsigned i = n; i > 0; --i) {
-    //     std::cout << arr[i] << ' ';
-    // }
-    // return 0;
-
-    for (unsigned i = n; i >= 0; --i) {
-        for (unsigned j = 0; j < i; ++i) {
-            // std::cout << "i:" << i << " j:" << j << '\n';
-            // std::cout << "arr[i]:" << arr[i] << " arr[j]:" << arr[j] << '\n';
-            // break;
-            std::cout << arr[j] << " * " << arr[i] << " ?= " << target << '\n';
- 
-            // if (arr[i] * arr[j] == target) {
-            //     // std::cout << '(' << arr[j] << ", " << arr[i] << ")\n"; 
-            //     found = true;
-            // }
-        }
-        break;
-    }
-
-    if (!found) {
-        // std::cout << "No suitable pairs.";
-    }
-    
     return 0;
 }

@@ -1,34 +1,62 @@
 #include <iostream>
 
-//...
+const unsigned MAX_SIZE = 128;
 
-void moveRight(int arr[], int len, int k) {
-    int result[len];
-    for (unsigned i = 0; i < len; ++i) {
-        result[(i + k) % len] = arr[i];
+void arrayInput(int arr[], const int size) {
+    for (size_t i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+    }
+}
+
+void printArray(const int arr[], const int size) {
+    for (size_t i = 0; i < size; ++i) {
+        std::cout << arr[i] << ' ';
+    }
+}
+
+/*
+void rotateRight(int arr[], const int size, const int k) {
+    if (size == 0) {
+        return;
     }
 
-    for (unsigned i = 0; i < len; ++i) {
-        std::cout << result[i] << ' ';
+    int temp[size];
+    for (size_t i = 0; i < size; ++i) {
+        temp[i] = arr[(i + k) % size];
     }
-    std::cout << '\n';
+    for (size_t i = 0; i < size; ++i) {
+        arr[i] = temp[i];
+    }
+}
+*/
+
+void rotateRight(int arr[], const int size, int k) {
+    if (size == 0) {
+        return;
+    }
+
+    k %= size;
+    for (size_t i = 0; i < k; ++i) {
+        int last = arr[size - 1];
+        for (size_t j = size - 1; j > 0; --j) {
+            arr[j] = arr[j - 1];
+        }
+        arr[0] = last;
+    }
 }
 
 int main() {
-    unsigned n = 0;
+    unsigned n;
     std::cin >> n;
-    
-    int arr[n];
-    for (unsigned i = 0; i < n; ++i) {
-        int num;
-        std::cin >> num;
-        arr[i] = num;
-    }
 
-    int k = 0;
+    int arr[MAX_SIZE];
+    arrayInput(arr, n);
+
+    unsigned k;
     std::cin >> k;
-
-    moveRight(arr, n, k);
+    
+    rotateRight(arr, n, k);
+    printArray(arr, n);
 
     return 0;
 }
